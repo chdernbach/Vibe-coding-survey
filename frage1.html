@@ -111,6 +111,14 @@
 </div>
 
 <script>
+    // Füllt das Textfeld mit bestehender Antwort aus localStorage (falls vorhanden)
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedVibeCoding = localStorage.getItem('vibeCoding');
+        if(savedVibeCoding) {
+            document.getElementById('vibe-coding').value = savedVibeCoding;
+        }
+    });
+
     function saveAndNext(nextPage) {
         const vibeCoding = document.getElementById('vibe-coding').value;
         
