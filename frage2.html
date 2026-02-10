@@ -1,137 +1,42 @@
 <!DOCTYPE html>
-<html lang="de">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibe Coding Survey - Frage 2</title>
+    <title>Survey</title>
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             margin: 0;
+            padding: 20px;
         }
-
-        .container {
-            max-width: 700px;
-            margin: 60px auto;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        /* Updated color */
+        h1 {
+            color: #6b7280; /* line 34 */
         }
-
-        .progress {
-            width: 100%;
-            height: 6px;
-            background-color: #e5e7eb;
-            border-radius: 3px;
-            margin-bottom: 30px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background-color: #4f46e5;
-            width: 66%;
-            transition: width 0.3s ease;
-        }
-
-        label {
-            display: block;
-            margin: 15px 0 10px 0;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0 15px 0;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            font-size: 14px;
-            font-family: Arial, Helvetica, sans-serif;
-            box-sizing: border-box;
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 30px;
-        }
-
-        button {
-            flex: 1;
-            padding: 12px 24px;
-            font-size: 16px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background-color: #4f46e5;
-            color: #ffffff;
-        }
-
-        .btn-primary:hover {
-            background-color: #4338ca;
-        }
-
-        .btn-secondary {
-            background-color: #e5e7eb;
-            color: #1f2937;
-        }
-
-        .btn-secondary:hover {
-            background-color: #d1d5db;
-        }
-
         p {
-            color: #4b5563;
-            font-size: 16px;
-            line-height: 1.6;
+            color: #6b7280; /* line 75 */
+        }
+        footer {
+            background-color: #4b5563; /* line 80 */
+        }
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 180px;
+            height: auto;
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <div class="progress">
-        <div class="progress-bar"></div>
-    </div>
-
-    <h1>Frage 2 von 3</h1>
-
-    <form id="form2">
-        <label for="kiEinsatz">In welcher Form setzt du KI bereits heute in deinem Arbeitsalltag ein?</label>
-        <textarea id="kiEinsatz" name="kiEinsatz" required placeholder="Deine Antwort hier..."></textarea>
-
-        <div class="button-group">
-            <button type="button" class="btn-secondary" onclick="window.location.href='frage1.html'">Zurück</button>
-            <button type="button" class="btn-primary" onclick="saveAndNext('frage3.html')">Weiter</button>
-        </div>
-    </form>
-</div>
-
-<script>
-    function saveAndNext(nextPage) {
-        const kiEinsatz = document.getElementById('kiEinsatz').value;
-        
-        if (!kiEinsatz.trim()) {
-            alert('Bitte fülle das Feld aus');
-            return;
-        }
-        
-        // Speichere in localStorage
-        localStorage.setItem('kiEinsatz', kiEinsatz);
-        
-        // Gehe zur nächsten Seite
-        window.location.href = nextPage;
-    }
-</script>
-
+    <img src="switzerland-logo.svg" alt="Switzerland Logo" class="logo"> <!-- Added logo -->
+    <h1>Welcome to the Survey</h1>
+    <p>Please fill out the following questions:</p>
+    <!-- Survey Questions Here -->
+    <footer>
+        <p>Thank you for participating!</p>
+    </footer>
 </body>
 </html>
