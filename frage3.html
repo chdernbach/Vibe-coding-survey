@@ -5,9 +5,10 @@
         github: 'frage3_github_account'
     };
 
+    // Antworten beim Laden wiederherstellen
     document.addEventListener('DOMContentLoaded', () => {
 
-        // Programmiererfahrung
+        // Programmiererfahrung (Radio)
         const progExp = sessionStorage.getItem(STORAGE.progExp);
         if (progExp) {
             const radio = document.querySelector(
@@ -33,7 +34,7 @@
 
         toggleTextarea();
 
-        // Auto-Speichern
+        // Auto-Speichern bei jeder Änderung
         document.querySelectorAll('input, textarea').forEach(el => {
             el.addEventListener('change', saveAnswers);
             el.addEventListener('input', saveAnswers);
@@ -86,3 +87,4 @@
         window.location.href = 'ergebnis.html';
     }
 </script>
+
