@@ -3,28 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibe Coding Survey</title>
+    <title>Survey Results</title>
     <style>
+        /* Add your custom styles here */
         body { font-family: Arial, sans-serif; }
-        form { margin: 20px; }
-        label { display: block; margin: 10px 0 5px; }
-        input, textarea, button { width: 100%; padding: 10px; }
+        .container { margin: 20px; }
+        h1 { color: #333; }
+        .countdown { font-size: 24px; color: red; }
     </style>
 </head>
 <body>
-    <h1>Vibe Coding Survey</h1>
-    <form action="https://script.google.com/macros/s/AKfycbxzL5nBGZLR6GW8LBhAEfCoQlXaL9RRL8GXQ-PUpsMFCi3NG7N0MGyjjZw1zVYa2vihag/exec" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <label for="feedback">Feedback:</label>
-        <textarea id="feedback" name="feedback" required></textarea>
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container">
+        <h1>Thank you for your submission!</h1>
+        <div id="answers"></div>
+        <div class="countdown" id="countdown"></div>
+    </div>
+
     <script>
-        // JavaScript code for form validation would go here
-        console.log('Form ready!');
+        // LocalStorage reading
+        const answers = JSON.parse(localStorage.getItem('surveyAnswers')) || [];
+        document.getElementById('answers').innerHTML = answers.map(answer => `<p>${answer}</p>`).join('');
+
+        // Google Sheets integration
+        const url = "https://script.google.com/macros/s/AKfycbxzL5nBGZLR6GW8LBhAEfCoQlXaL9RRL8GXQ-PUpsMFCi3NG7N0MGyjjZw1zVYa2vihag/exec";
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify({ answers }),
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        // Countdown Timer
+        let countdownDate = new Date().getTime() + 5 * 60 * 1000; // 5 minutes from now
+        let countdownElement = document.getElementById("countdown");
+
+        const x = setInterval(function() {
+            let now = new Date().getTime();
+            let distance = countdownDate - now;
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            countdownElement.innerHTML = `${minutes}m ${seconds}s`;
+            if (distance < 0) {
+                clearInterval(x);
+                // Redirect
+                window.location.href = "https://www.switzerland.com";
+            }
+        }, 1000);
     </script>
 </body>
 </html>
