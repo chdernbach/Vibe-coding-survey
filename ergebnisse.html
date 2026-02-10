@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Submission</title>
+    <style>
+        /* Loading spinner style */
+        .spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="spinner" id="loader"></div>
+    <div id="message"></div>
+
+    <script>
+        function submitSurveyData() {
+            const surveyData = {
+                vibeCoding: localStorage.getItem('vibeCoding'),
+                kiEinsatz: localStorage.getItem('kiEinsatz'),
+                programmiererfahrung: localStorage.getItem('programmiererfahrung'),
+                programmiererfahrung_details: localStorage.getItem('programmiererfahrung_details'),
+                github_account: localStorage.getItem('github_account')
+            };
+
+            document.getElementById('loader').style.display = 'block';
+
+            fetch('https://script.google.com/macros/s/AKfycbydbGINAVnOz67MraMVhXQz9t_ppj9C80aLuoSseM72dR0j_pbCYVjtS9ebWLCS5EPdgw/exec', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(surveyData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('loader').style.display = 'none';
+                if (data.success) {
+                    document.getElementById('message').innerText = 'Thank you for your submission!';
+                } else {
+                    document.getElementById('message').innerText = 'Error: ' + data.error;
+                }
+            })
+            .catch(error => {
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('message').innerText = 'Error: ' + error;
+            });
+        }
+
+        // Call function to submit data when the page loads
+        window.onload = submitSurveyData;
+    </script>
+</body>
+</html>
