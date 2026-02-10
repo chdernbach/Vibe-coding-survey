@@ -5,86 +5,77 @@
         github: 'frage3_github_account'
     };
 
-    // Antworten beim Laden wiederherstellen
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', function () {
 
-        // Programmiererfahrung (Radio)
-        const progExp = sessionStorage.getItem(STORAGE.progExp);
-        if (progExp) {
-            const radio = document.querySelector(
-                `input[name="programmiererfahrung"][value="${progExp}"]`
-            );
-            if (radio) radio.checked = true;
+        // Programmiererfahrung
+        const savedProgExp = sessionStorage.getItem(STORAGE.progExp);
+        if (savedProgExp) {
+            const radios = document.getElementsByName('programmiererfahrung');
+            for (let i = 0; i < radios.length; i++) {
+                if (radios[i].value === savedProgExp) {
+                    radios[i].checked = true;
+                }
+            }
         }
 
         // Details
-        const details = sessionStorage.getItem(STORAGE.progDetails);
-        if (details) {
-            document.getElementById('prog_details').value = details;
+        const savedDetails = sessionStorage.getItem(STORAGE.progDetails);
+        if (savedDetails) {
+            document.getElementById('prog_details').value = savedDetails;
         }
 
         // GitHub
-        const github = sessionStorage.getItem(STORAGE.github);
-        if (github) {
-            const radio = document.querySelector(
-                `input[name="github_account"][value="${github}"]`
-            );
-            if (radio) radio.checked = true;
+        const savedGithub = sessionStorage.getItem(STORAGE.github);
+        if (savedGithub) {
+            const radios = document.getElementsByName('github_account');
+            for (let i = 0; i < radios.length; i++) {
+                if (radios[i].value === savedGithub) {
+                    radios[i].checked = true;
+                }
+            }
         }
 
         toggleTextarea();
 
-        // Auto-Speichern bei jeder Änderung
-        document.querySelectorAll('input, textarea').forEach(el => {
-            el.addEventListener('change', saveAnswers);
-            el.addEventListener('input', saveAnswers);
-        });
+        // Auto-Speichern
+        const fields = document.querySelectorAll('input, textarea');
+        for (let i = 0; i < fields.length; i++) {
+            fields[i].addEventListener('change', saveAnswers);
+            fields[i].addEventListener('input', saveAnswers);
+        }
     });
 
     function toggleTextarea() {
         const progJa = document.getElementById('prog_ja').checked;
         const textarea = document.getElementById('prog_details');
 
-        textarea.classList.toggle('show', progJa);
+        if (progJa) {
+            textarea.classList.add('show');
+        } else {
+            textarea.classList.remove('show');
+        }
     }
 
     function saveAnswers() {
-        const progExp = document.querySelector('input[name="programmiererfahrung"]:checked')?.value;
-        const progDetails = document.getElementById('prog_details').value;
-        const github = document.querySelector('input[name="github_account"]:checked')?.value;
+        const progRadios = document.getElementsByName('programmiererfahrung');
+        let progExp = '';
+        for (let i = 0; i < progRadios.length; i++) {
+            if (progRadios[i].checked) {
+                progExp = progRadios[i].value;
+            }
+        }
 
-        if (progExp) sessionStorage.setItem(STORAGE.progExp, progExp);
-        sessionStorage.setItem(STORAGE.progDetails, progDetails || '');
-        if (github) sessionStorage.setItem(STORAGE.github, github);
-    }
+        const githubRadios = document.getElementsByName('github_account');
+        let github = '';
+        for (let i = 0; i < githubRadios.length; i++) {
+            if (githubRadios[i].checked) {
+                github = githubRadios[i].value;
+            }
+        }
 
-    function goBack() {
-        saveAnswers();
-        window.location.href = 'frage2.html';
-    }
-
-    function saveAndSubmit() {
-        const progExp = document.querySelector('input[name="programmiererfahrung"]:checked')?.value;
-        const github = document.querySelector('input[name="github_account"]:checked')?.value;
         const details = document.getElementById('prog_details').value;
 
-        if (!progExp) {
-            alert('Bitte wähle aus, ob du Programmiererfahrung hast');
-            return;
-        }
-
-        if (progExp === 'ja' && !details.trim()) {
-            alert('Bitte beschreibe deine Programmiererfahrung');
-            return;
-        }
-
-        if (!github) {
-            alert('Bitte wähle aus, ob du einen GitHub Account hast');
-            return;
-        }
-
-        saveAnswers();
-        window.location.href = 'ergebnis.html';
-    }
-</script>
+        if (progExp) sessionStorage.setItem(STORAGE.progExp, progExp);
+        sessionStorage.setItem(STORAGE.progDetails, details);
+        if (github) sessionStorage.setItem(STORAGE.github, gi
 
