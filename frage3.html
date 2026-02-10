@@ -1,110 +1,75 @@
 <script>
-    function toggleTextarea() {
-        const progJa = document.getElementById('prog_ja').checked;
-        const textarea = document.getElementById('prog_details');
+window.onload = function () {
 
-        if (progJa) {
-            textarea.classList.add('show');
-        } else {
-            textarea.classList.remove('show');
+    // Wiederherstellen
+    var progExp = localStorage.getItem('programmiererfahrung');
+    if (progExp) {
+        var radios = document.getElementsByName('programmiererfahrung');
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].value === progExp) {
+                radios[i].checked = true;
+            }
         }
     }
 
-    function goBack() {
-        saveAnswers();
-        window.location.href = 'frage2.html';
+    var details = localStorage.getItem('programmiererfahrung_details');
+    if (details) {
+        document.getElementById('prog_details').value = details;
     }
 
-    function saveAnswers() {
-        let progExp = '';
-        const progRadios = document.getElementsByName('programmiererfahrung');
-        for (let i = 0; i < progRadios.length; i++) {
-            if (progRadios[i].checked) {
-                progExp = progRadios[i].value;
+    var github = localStorage.getItem('github_account');
+    if (github) {
+        var radios2 = document.getElementsByName('github_account');
+        for (var j = 0; j < radios2.length; j++) {
+            if (radios2[j].value === github) {
+                radios2[j].checked = true;
             }
         }
-
-        let github = '';
-        const githubRadios = document.getElementsByName('github_account');
-        for (let i = 0; i < githubRadios.length; i++) {
-            if (githubRadios[i].checked) {
-                github = githubRadios[i].value;
-            }
-        }
-
-        const progDetails = document.getElementById('prog_details').value;
-
-        localStorage.setItem('programmiererfahrung', progExp);
-        localStorage.setItem('programmiererfahrung_details', progDetails);
-        localStorage.setItem('github_account', github);
     }
 
-    function saveAndSubmit() {
-        let progExp = '';
-        const progRadios = document.getElementsByName('programmiererfahrung');
-        for (let i = 0; i < progRadios.length; i++) {
-            if (progRadios[i].checked) {
-                progExp = progRadios[i].value;
-            }
-        }
+    toggleTextarea();
+};
 
-        let github = '';
-        const githubRadios = document.getElementsByName('github_account');
-        for (let i = 0; i < githubRadios.length; i++) {
-            if (githubRadios[i].checked) {
-                github = githubRadios[i].value;
-            }
-        }
+function toggleTextarea() {
+    var textarea = document.getElementById('prog_details');
+    var progJa = document.getElementById('prog_ja').checked;
 
-        const details = document.getElementById('prog_details').value;
+    if (progJa) {
+        textarea.classList.add('show');
+    } else {
+        textarea.classList.remove('show');
+    }
+}
 
-        if (!progExp) {
-            alert('Bitte wähle aus, ob du Programmiererfahrung hast');
-            return;
-        }
-
-        if (progExp === 'ja' && !details.trim()) {
-            alert('Bitte beschreibe deine Programmiererfahrung');
-            return;
-        }
-
-        if (!github) {
-            alert('Bitte wähle aus, ob du einen GitHub Account hast');
-            return;
-        }
-
-        saveAnswers();
-        window.location.href = 'ergebnis.html';
+function saveAnswers() {
+    var progExp = '';
+    var radios = document.getElementsByName('programmiererfahrung');
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) progExp = radios[i].value;
     }
 
-    // 🔁 Wiederherstellung beim Laden (OHNE moderne Syntax)
-    window.onload = function () {
-        const savedProgExp = localStorage.getItem('programmiererfahrung');
-        if (savedProgExp) {
-            const radios = document.getElementsByName('programmiererfahrung');
-            for (let i = 0; i < radios.length; i++) {
-                if (radios[i].value === savedProgExp) {
-                    radios[i].checked = true;
-                }
-            }
-        }
+    var github = '';
+    var radios2 = document.getElementsByName('github_account');
+    for (var j = 0; j < radios2.length; j++) {
+        if (radios2[j].checked) github = radios2[j].value;
+    }
 
-        const savedDetails = localStorage.getItem('programmiererfahrung_details');
-        if (savedDetails) {
-            document.getElementById('prog_details').value = savedDetails;
-        }
+    localStorage.setItem('programmiererfahrung', progExp);
+    localStorage.setItem('programmiererfahrung_details',
+        document.getElementById('prog_details').value
+    );
+    localStorage.setItem('github_account', github);
+}
 
-        const savedGithub = localStorage.getItem('github_account');
-        if (savedGithub) {
-            const radios = document.getElementsByName('github_account');
-            for (let i = 0; i < radios.length; i++) {
-                if (radios[i].value === savedGithub) {
-                    radios[i].checked = true;
-                }
-            }
-        }
+function goBack() {
+    saveAnswers();
+    window.location.href = 'frage2.html';
+}
 
-        toggleTextarea();
-    };
+function saveAndSubmit() {
+    saveAnswers();
+    window.location.href = 'ergebnis.html';
+}
 </script>
+
 
