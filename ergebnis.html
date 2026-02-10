@@ -1,69 +1,243 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibe Coding Survey</title>
-    <script>
-        async function sendData() {
-            const data = {
-                vibeCoding: document.getElementById('vibeCoding').value,
-                kiEinsatz: document.getElementById('kiEinsatz').value,
-                frage3: document.getElementById('frage3').value,
-                programmiererfahrung: document.getElementById('programmiererfahrung').value,
-                programmiererfahrungDetails: document.getElementById('programmiererfahrungDetails').value,
-                githubAccount: document.getElementById('githubAccount').value
-            };
-
-            const response = await fetch('https://script.google.com/macros/s/AKfycbxpPX-5ZZPOIhqwvf1iFynpCMQrk2VZcaH8fmPSbX9n_pTwTZI2QRf-kk9sXsIXPfMDCg/exec', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-
-            if (response.ok) {
-                console.log('Data sent successfully!');
-            } else {
-                console.error('Failed to send data.');
-            }
+    <title>Vibe Coding Survey - Vielen Dank!</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
         }
 
-        function startRedirect() {
-            let countdown = 5;
-            const countdownDisplay = document.getElementById('countdown');
-            countdownDisplay.innerText = countdown;
-            const interval = setInterval(() => {
-                countdown--;
-                countdownDisplay.innerText = countdown;
-                if (countdown <= 0) {
-                    clearInterval(interval);
-                    window.location.href = 'https://switzerland.com';
-                }
-            }, 1000);
+        .container {
+            max-width: 700px;
+            margin: 60px auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        window.onload = startRedirect;
-    </script>
+        .progress {
+            width: 100%;
+            height: 6px;
+            background-color: #e5e7eb;
+            border-radius: 3px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #4f46e5;
+            width: 100%;
+            transition: width 0.3s ease;
+        }
+
+        h1 {
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #4f46e5;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        p {
+            color: #4b5563;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .answer-box {
+            background-color: #f9fafb;
+            border-left: 4px solid #4f46e5;
+            padding: 15px;
+            margin: 10px 0 25px 0;
+            border-radius: 4px;
+        }
+
+        .answer-box p {
+            margin: 0;
+            color: #1f2937;
+            font-style: italic;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: #4338ca;
+        }
+
+        .success-icon {
+            text-align: center;
+            font-size: 64px;
+            margin: 20px 0;
+        }
+
+        .redirect-info {
+            text-align: center;
+            margin-top: 20px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .status-message {
+            text-align: center;
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .status-success {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-error {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+    </style>
 </head>
 <body>
-    <h1>Vibe Coding Survey</h1>
-    <form onsubmit="sendData(); return false;">
-        <label for="vibeCoding">Vibe Coding:</label>
-        <input type="text" id="vibeCoding" required><br><br>
-        <label for="kiEinsatz">KI Einsatz:</label>
-        <input type="text" id="kiEinsatz" required><br><br>
-        <label for="frage3">Frage 3:</label>
-        <input type="text" id="frage3" required><br><br>
-        <label for="programmiererfahrung">Programmierererfahrung:</label>
-        <input type="text" id="programmiererfahrung" required><br><br>
-        <label for="programmiererfahrungDetails">Programmierererfahrung Details:</label>
-        <input type="text" id="programmiererfahrungDetails" required><br><br>
-        <label for="githubAccount">GitHub Account:</label>
-        <input type="text" id="githubAccount" required><br><br>
-        <input type="submit" value="Submit">
-    </form>
-    <p>Redirecting in <span id="countdown">5</span> seconds...</p>
+
+<div class="container">
+    <div class="progress">
+        <div class="progress-bar"></div>
+    </div>
+
+    <div class="success-icon">✅</div>
+
+    <h1>Vielen Dank für deine Teilnahme!</h1>
+
+    <p>Deine Antworten wurden erfolgreich gespeichert. Hier ist eine Zusammenfassung deiner Antworten:</p>
+
+    <h2>Frage 1: Was verstehst du unter dem Begriff "Vibe Coding"?</h2>
+    <div class="answer-box">
+        <p id="answer1">Keine Antwort</p>
+    </div>
+
+    <h2>Frage 2: In welcher Form setzt du KI bereits heute in deinem Arbeitsalltag ein?</h2>
+    <div class="answer-box">
+        <p id="answer2">Keine Antwort</p>
+    </div>
+
+    <h2>Frage 3: Weitere Frage</h2>
+    <div class="answer-box">
+        <p id="answer3">Keine Antwort</p>
+    </div>
+
+    <div id="statusMessage"></div>
+
+    <div class="redirect-info">
+        <p>Du wirst in <strong id="countdown">5</strong> Sekunden zu Switzerland.com weitergeleitet...</p>
+    </div>
+
+    <div class="button-group">
+        <button class="btn-primary" onclick="window.location.href='https://www.switzerland.com'">Jetzt weiterleiten</button>
+    </div>
+</div>
+
+<script>
+    // Google Apps Script Web App URL - NEUE URL!
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxpPX-5ZZPOIhqwvf1iFynpCMQrk2VZcaH8fmPSbX9n_pTwTZI2QRf-kk9sXsIXPfMDCg/exec';
+
+    // Lade Antworten aus localStorage und sende zu Google Sheets
+    window.addEventListener('DOMContentLoaded', function() {
+        const answer1 = localStorage.getItem('vibeCoding');
+        const answer2 = localStorage.getItem('kiEinsatz');
+        const answer3 = localStorage.getItem('frage3');
+        const answer4 = localStorage.getItem('programmiererfahrung');
+        const answer5 = localStorage.getItem('programmiererfahrungDetails');
+        const answer6 = localStorage.getItem('githubAccount');
+
+        // Zeige Antworten auf der Seite
+        if (answer1) {
+            document.getElementById('answer1').textContent = answer1;
+        }
+        if (answer2) {
+            document.getElementById('answer2').textContent = answer2;
+        }
+        if (answer3) {
+            document.getElementById('answer3').textContent = answer3;
+        }
+
+        // Sende Daten zu Google Sheets
+        sendToGoogleSheets(answer1, answer2, answer3, answer4, answer5, answer6);
+
+        // Countdown und automatische Weiterleitung nach 5 Sekunden
+        let countdown = 5;
+        const countdownElement = document.getElementById('countdown');
+        
+        const countdownInterval = setInterval(function() {
+            countdown--;
+            countdownElement.textContent = countdown;
+            
+            if (countdown <= 0) {
+                clearInterval(countdownInterval);
+                window.location.href = 'https://www.switzerland.com';
+            }
+        }, 1000);
+    });
+
+    function sendToGoogleSheets(answer1, answer2, answer3, answer4, answer5, answer6) {
+        const statusDiv = document.getElementById('statusMessage');
+        
+        // Erstelle JSON-Objekt (wie dein Script es erwartet)
+        const data = {
+            vibeCoding: answer1 || '',
+            kiEinsatz: answer2 || '',
+            frage3: answer3 || '',
+            programmiererfahrung: answer4 || '',
+            programmiererfahrungDetails: answer5 || '',
+            githubAccount: answer6 || ''
+        };
+
+        // Sende zu Google Sheets als JSON
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(() => {
+            statusDiv.innerHTML = '<div class="status-message status-success">✓ Daten erfolgreich gespeichert!</div>';
+            console.log('Daten erfolgreich an Google Sheets gesendet');
+        })
+        .catch(error => {
+            statusDiv.innerHTML = '<div class="status-message status-error">⚠ Warnung: Daten konnten nicht gespeichert werden</div>';
+            console.error('Fehler beim Senden an Google Sheets:', error);
+        });
+    }
+</script>
+
 </body>
 </html>
