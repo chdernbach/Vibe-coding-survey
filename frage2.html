@@ -1,16 +1,22 @@
-<div class="question">
-    <label for="frage2">In welcher Form setzt du KI bereits heute ein in deinem Arbeitsalltag?</label>
-    <textarea id="frage2" name="frage2" rows="4" cols="50"></textarea>
-</div>
-
-<style>
-    .question {
-        margin: 20px 0;
-        font-family: Arial, sans-serif;
-    }
-    #frage2 {
-        width: 100%;
-        padding: 10px;
-        box-sizing: border-box;
-    }
-</style>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Coding Survey - Frage 2</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .progress-bar { width: 66%; height: 20px; background-color: #4caf50; }
+        .nav-buttons { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>In welcher Form setzt du KI bereits heute ein in deinem Arbeitsalltag?</h1>
+    <textarea rows="4" cols="50" placeholder="Deine Antwort hier..."></textarea>
+    <div class="progress-bar"></div>
+    <div class="nav-buttons">
+        <button onclick="window.location.href='frage1.html'">Back to Frage 1</button>
+        <button onclick="window.location.href='frage3.html'">Next to Frage 3</button>
+    </div>
+</body>
+</html>
