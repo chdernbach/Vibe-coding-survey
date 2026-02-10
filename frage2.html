@@ -10,7 +10,6 @@
             background-color: #f5f5f5;
             margin: 0;
         }
-
         .container {
             max-width: 700px;
             margin: 60px auto;
@@ -19,7 +18,6 @@
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-
         .progress {
             width: 100%;
             height: 6px;
@@ -28,71 +26,44 @@
             margin-bottom: 30px;
             overflow: hidden;
         }
-
         .progress-bar {
             height: 100%;
             background-color: #6b7280;
             width: 66%;
-            transition: width 0.3s ease;
         }
-
         label {
             display: block;
             margin: 15px 0 10px 0;
             font-size: 16px;
             font-weight: bold;
         }
-
         textarea {
             width: 100%;
             padding: 10px;
-            margin: 8px 0 15px 0;
             border: 1px solid #d1d5db;
             border-radius: 6px;
+            min-height: 120px;
             font-size: 14px;
-            font-family: Arial, Helvetica, sans-serif;
-            box-sizing: border-box;
-            resize: vertical;
-            min-height: 100px;
         }
-
         .button-group {
             display: flex;
             gap: 10px;
             margin-top: 30px;
         }
-
         button {
             flex: 1;
-            padding: 12px 24px;
+            padding: 12px;
             font-size: 16px;
             border: none;
             border-radius: 6px;
             cursor: pointer;
         }
-
         .btn-primary {
             background-color: #6b7280;
-            color: #ffffff;
+            color: white;
         }
-
-        .btn-primary:hover {
-            background-color: #4b5563;
-        }
-
         .btn-secondary {
             background-color: #e5e7eb;
-            color: #1f2937;
-        }
-
-        .btn-secondary:hover {
-            background-color: #d1d5db;
-        }
-
-        p {
-            color: #4b5563;
-            font-size: 16px;
-            line-height: 1.6;
         }
     </style>
 </head>
@@ -105,56 +76,56 @@
 
     <h1>Frage 2 von 3</h1>
 
-    <form id="form2">
-        <label for="kiEinsatz">In welcher Form setzt du KI bereits heute in deinem Arbeitsalltag ein?</label>
-        <textarea id="kiEinsatz" name="kiEinsatz" required placeholder="Deine Antwort hier..."></textarea>
+    <form>
+        <label for="kiEinsatz">
+            In welcher Form setzt du KI bereits heute in deinem Arbeitsalltag ein?
+        </label>
+
+        <textarea
+            id="kiEinsatz"
+            name="kiEinsatz"
+            placeholder="Deine Antwort hier..."
+            required></textarea>
 
         <div class="button-group">
-            <button type="button" class="btn-secondary" onclick="window.location.href='frage1.html'">Zurück</button>
-            <button type="button" class="btn-primary" onclick="saveAndNext('frage3.html')">Weiter</button>
+            <button type="button" class="btn-secondary"
+                    onclick="window.location.href='frage1.html'">
+                Zurück
+            </button>
+
+            <button type="button" class="btn-primary"
+                    onclick="saveAndNext('frage3.html')">
+                Weiter
+            </button>
         </div>
     </form>
 </div>
 
 <script>
-    function saveAndNext(nextPage) {
-        const kiEinsatz = document.getElementById('kiEinsatz').value;
-        
-        if (!kiEinsatz.trim()) {
-            alert('Bitte fülle das Feld aus');
-            return;
-        }
-        
-        // Speichere in localStorage
-        localStorage.setItem('kiEinsatz', kiEinsatz);
-        
-        // Gehe zur nächsten Seite
-        window.location.href = nextPage;
-    }
-</script>
-    // Füllt das Textfeld mit bestehender Antwort aus localStorage (falls vorhanden)
-    document.addEventListener('DOMContentLoaded', function() {
-        const savedVibeCoding2 = localStorage.getItem('vibeCoding2');
-        if(savedVibeCoding2) {
-            document.getElementById('vibe-coding2').value = savedVibeCoding2;
+    const STORAGE_KEY = 'frage2_kiEinsatz';
+
+    // Beim Laden: Antwort wiederherstellen
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedValue = sessionStorage.getItem(STORAGE_KEY);
+        if (savedValue) {
+            document.getElementById('kiEinsatz').value = savedValue;
         }
     });
 
+    // Speichern & weiter
     function saveAndNext(nextPage) {
-        const vibeCoding2 = document.getElementById('vibe-coding2').value;
-        
-        if (!vibeCoding2.trim()) {
+        const value = document.getElementById('kiEinsatz').value;
+
+        if (!value.trim()) {
             alert('Bitte fülle das Feld aus');
             return;
         }
-        
-        // Speichere in localStorage
-        localStorage.setItem('vibeCoding2', vibeCoding2);
-        
-        // Gehe zur nächsten Seite
+
+        sessionStorage.setItem(STORAGE_KEY, value);
         window.location.href = nextPage;
     }
 </script>
-    
+
 </body>
 </html>
+
