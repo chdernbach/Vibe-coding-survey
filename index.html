@@ -1,61 +1,17 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Umfrage – Vibe Coding</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
+    <title>Vibe Coding Survey</title>
+    <script>
+        function startSurvey() {
+            window.location.href = 'frage1.html';
         }
-
-        .container {
-            max-width: 700px;
-            margin: 60px auto;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        button {
-            margin-top: 20px;
-            padding: 12px 24px;
-            font-size: 16px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            background-color: #4f46e5;
-            color: #ffffff;
-        }
-
-        button:hover {
-            background-color: #4338ca;
-        }
-    </style>
+    </script>
 </head>
 <body>
-
-<div class="container">
-    <h1>Willkommen zur Umfrage</h1>
-
-    <p>
-        Vielen Dank, dass du an dieser kurzen Umfrage teilnimmst.
-        Sie besteht aus einer offenen Frage und dauert nur wenige Minuten.
-    </p>
-
-    <p>
-        Es gibt keine richtigen oder falschen Antworten – uns interessiert
-        dein spontanes Verständnis.
-    </p>
-
-    <form action="frage.html" method="get">
-        <button type="submit">Zur Frage</button>
-    </form>
-</div>
-
+    <h1>Welcome to the Vibe Coding Survey</h1>
+    <button onclick="startSurvey()">Start Survey</button>
 </body>
 </html>
