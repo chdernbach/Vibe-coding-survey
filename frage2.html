@@ -132,6 +132,29 @@
         window.location.href = nextPage;
     }
 </script>
+    // Füllt das Textfeld mit bestehender Antwort aus localStorage (falls vorhanden)
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedVibeCoding2 = localStorage.getItem('vibeCoding2');
+        if(savedVibeCoding2) {
+            document.getElementById('vibe-coding2').value = savedVibeCoding2;
+        }
+    });
 
+    function saveAndNext(nextPage) {
+        const vibeCoding2 = document.getElementById('vibe-coding2').value;
+        
+        if (!vibeCoding2.trim()) {
+            alert('Bitte fülle das Feld aus');
+            return;
+        }
+        
+        // Speichere in localStorage
+        localStorage.setItem('vibeCoding2', vibeCoding2);
+        
+        // Gehe zur nächsten Seite
+        window.location.href = nextPage;
+    }
+</script>
+    
 </body>
 </html>
