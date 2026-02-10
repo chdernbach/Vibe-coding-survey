@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vibe Coding Survey - Frage 2</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        .progress-bar { width: 66%; height: 20px; background-color: #4caf50; }
-        .nav-buttons { margin-top: 20px; }
-    </style>
+    <script>
+        function saveToLocalStorage() {
+            const answer = document.getElementById('kiEinsatz').value;
+            localStorage.setItem('kiEinsatz', answer);
+            window.location.href = 'frage3.html';
+        }
+    </script>
 </head>
 <body>
-    <h1>In welcher Form setzt du KI bereits heute ein in deinem Arbeitsalltag?</h1>
-    <textarea rows="4" cols="50" placeholder="Deine Antwort hier..."></textarea>
-    <div class="progress-bar"></div>
-    <div class="nav-buttons">
-        <button onclick="window.location.href='frage1.html'">Back to Frage 1</button>
-        <button onclick="window.location.href='frage3.html'">Next to Frage 3</button>
-    </div>
+    <h1>Frage 2</h1>
+    <form onsubmit="event.preventDefault(); saveToLocalStorage();">
+        <label for="kiEinsatz">In welcher Form setzt du KI bereits heute ein in deinem Arbeitsalltag?</label><br>
+        <textarea id="kiEinsatz" name="kiEinsatz" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Weiter">
+    </form>
 </body>
 </html>
