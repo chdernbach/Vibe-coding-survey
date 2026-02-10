@@ -2,9 +2,8 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Umfrage – Vibe Coding</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>Vibe Coding Survey - Frage 3</title>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -127,7 +126,7 @@
 
     <h1>Frage 3 von 3</h1>
 
-    <form action="ergebnis.html" method="get">
+    <form id="form3">
         
         <!-- Frage 1: Programmiererfahrung -->
         <div class="question-section">
@@ -162,8 +161,8 @@
         </div>
 
         <div class="button-group">
-            <button type="button" class="btn-secondary" onclick="window.location.href='frage2.html'">Zurück</button>
-            <button type="submit" class="btn-primary">Abschließen</button>
+            <button type="button" class="btn-secondary" onclick="goBack()">Zurück</button>
+            <button type="button" class="btn-primary" onclick="saveAndSubmit()">Abschließen</button>
         </div>
     </form>
 </div>
@@ -179,6 +178,48 @@
             textarea.classList.remove('show');
             textarea.value = '';
         }
+    }
+
+    function goBack() {
+        // Speichere die Antworten vor dem Zurückgehen
+        saveAnswers();
+        window.location.href = 'frage2.html';
+    }
+
+    function saveAnswers() {
+        const progExp = document.querySelector('input[name="programmiererfahrung"]:checked')?.value || '';
+        const progDetails = document.getElementById('prog_details').value;
+        const github = document.querySelector('input[name="github_account"]:checked')?.value || '';
+        
+        localStorage.setItem('programmiererfahrung', progExp);
+        localStorage.setItem('programmiererfahrung_details', progDetails);
+        localStorage.setItem('github_account', github);
+    }
+
+    function saveAndSubmit() {
+        const progExp = document.querySelector('input[name="programmiererfahrung"]:checked')?.value;
+        const github = document.querySelector('input[name="github_account"]:checked')?.value;
+        
+        if (!progExp) {
+            alert('Bitte wähle aus, ob du Programmiererfahrung hast');
+            return;
+        }
+        
+        if (progExp === 'ja' && !document.getElementById('prog_details').value.trim()) {
+            alert('Bitte beschreibe deine Programmiererfahrung');
+            return;
+        }
+        
+        if (!github) {
+            alert('Bitte wähle aus, ob du einen GitHub Account hast');
+            return;
+        }
+        
+        // Speichere alle Antworten
+        saveAnswers();
+        
+        // Gehe zur Ergebnis-Seite
+        window.location.href = 'ergebnis.html';
     }
 </script>
 
