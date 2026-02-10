@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vibe Coding Survey</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Coding Survey</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Other CSS styles */
+        /* Removed .logo class styles */
+    </style>
 </head>
 <body>
-  <h1>Welcome to the Vibe Coding Survey</h1>
-  <form action="/submit" method="post">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <label for="feedback">Feedback:</label>
-    <textarea id="feedback" name="feedback" required></textarea>
-    <button type="submit">Submit</button>
-  </form>
-  <footer>
-    <p>Thank you for your participation!</p>
-  </footer>
+    <h1>Welcome to the Vibe Coding Survey</h1>
+    <div>
+        <!-- Removed logo img tag -->
+        <p>Your feedback is important to us!</p>
+        <form action="submit_survey.php" method="post">
+            <!-- Survey form fields go here -->
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </body>
 </html>
