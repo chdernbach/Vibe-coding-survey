@@ -165,33 +165,31 @@
 </div>
 
 <script>
-    // Google Apps Script Web App URL - NEUE URL!
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxpPX-5ZZPOIhqwvf1iFynpCMQrk2VZcaH8fmPSbX9n_pTwTZI2QRf-kk9sXsIXPfMDCg/exec';
 
-    // Lade Antworten aus localStorage und sende zu Google Sheets
     window.addEventListener('DOMContentLoaded', function() {
         const answer1 = localStorage.getItem('vibeCoding');
         const answer2 = localStorage.getItem('kiEinsatz');
         const answer3 = localStorage.getItem('frage3');
         const answer4 = localStorage.getItem('programmiererfahrung');
-        const answer5 = localStorage.getItem('programmiererfahrungDetails');
-        const answer6 = localStorage.getItem('githubAccount');
+        const answer5 = localStorage.getItem('programmiererfahrung_details');
+        const answer6 = localStorage.getItem('github_account');
 
-        // Zeige Antworten auf der Seite
-        if (answer1) {
-            document.getElementById('answer1').textContent = answer1;
-        }
-        if (answer2) {
-            document.getElementById('answer2').textContent = answer2;
-        }
-        if (answer3) {
-            document.getElementById('answer3').textContent = answer3;
-        }
+        console.log('LocalStorage Daten:', {
+            vibeCoding: answer1,
+            kiEinsatz: answer2,
+            frage3: answer3,
+            programmiererfahrung: answer4,
+            programmiererfahrung_details: answer5,
+            github_account: answer6
+        });
 
-        // Sende Daten zu Google Sheets
+        if (answer1) document.getElementById('answer1').textContent = answer1;
+        if (answer2) document.getElementById('answer2').textContent = answer2;
+        if (answer3) document.getElementById('answer3').textContent = answer3;
+
         sendToGoogleSheets(answer1, answer2, answer3, answer4, answer5, answer6);
 
-        // Countdown und automatische Weiterleitung nach 5 Sekunden
         let countdown = 5;
         const countdownElement = document.getElementById('countdown');
         
@@ -209,7 +207,6 @@
     function sendToGoogleSheets(answer1, answer2, answer3, answer4, answer5, answer6) {
         const statusDiv = document.getElementById('statusMessage');
         
-        // Erstelle JSON-Objekt (wie dein Script es erwartet)
         const data = {
             vibeCoding: answer1 || '',
             kiEinsatz: answer2 || '',
@@ -219,7 +216,8 @@
             githubAccount: answer6 || ''
         };
 
-        // Sende zu Google Sheets als JSON
+        console.log('Sende an Google Sheets:', data);
+
         fetch(SCRIPT_URL, {
             method: 'POST',
             mode: 'no-cors',
@@ -230,11 +228,11 @@
         })
         .then(() => {
             statusDiv.innerHTML = '<div class="status-message status-success">✓ Daten erfolgreich gespeichert!</div>';
-            console.log('Daten erfolgreich an Google Sheets gesendet');
+            console.log('Erfolgreich gesendet!');
         })
         .catch(error => {
             statusDiv.innerHTML = '<div class="status-message status-error">⚠ Warnung: Daten konnten nicht gespeichert werden</div>';
-            console.error('Fehler beim Senden an Google Sheets:', error);
+            console.error('Fehler:', error);
         });
     }
 </script>
